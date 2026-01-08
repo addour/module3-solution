@@ -18,7 +18,7 @@
       <button class="btn btn-primary" ng-click="ctrl.narrowItDown()">Narrow It Down For Me!</button>
     </div>
     
-    <found-items found="ctrl.found" on-remove="ctrl.removeItem(index)"></found-items>
+    <found-items ng-if="ctrl.searched" found="ctrl.found" on-remove="ctrl.removeItem(index)"></found-items>
   </div>
   
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
