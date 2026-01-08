@@ -53,14 +53,22 @@
         method: "GET",
         url: "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json"
       }).then(function (result) {
-        var allItems = result.data.menu_items;
-        var foundItems = [];
+        var allItems = [];
+            var foundItems = [];
+            
+            // Iterate through all categories and collect all menu items
+            for (var category in result.data) {
+              if (result.data[category].menu_items) {
+                allItems = allItems.concat(result.data[category].menu_items);
+              }
+            }
 
-        for (var i = 0; i < allItems.length; i++) {
-          if (allItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-            foundItems.push(allItems[i]);
-          }
-        }
+            // Filter items by search term
+            for (var i = 0; i < allItems.length; i++) {
+              if (allItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+                foundItems.push(allItems[i]);
+              }
+            }
 
         return foundItems;
       });
